@@ -1,16 +1,15 @@
 package rentcarmanagerment.view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Tran Phuc
  */
-public class StatisticHomeFrm extends javax.swing.JFrame {
+public class StatisticHomeFrm extends JFrame {
 
-    /**
-     * Creates new form ViewReportFrm
-     */
     public StatisticHomeFrm() {
-        this.setTitle("Choose Report Type");
+        super("Choose Report Type");
         initComponents();
     }
 
@@ -47,7 +46,7 @@ public class StatisticHomeFrm extends javax.swing.JFrame {
             }
         });
 
-        mHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Pictures\\icons8-top-menu-24.png")); // NOI18N
+        mHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ptit-cnpm\\quanlithuexetulai\\image\\home-icon.png")); // NOI18N
         mHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mHomeMouseClicked(evt);
@@ -83,12 +82,12 @@ public class StatisticHomeFrm extends javax.swing.JFrame {
 
     private void btnByTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnByTimeActionPerformed
         this.setVisible(false);
-        new StatByTimeFrm().setVisible(true);
+        new StatByMonthFrm().setVisible(true);
     }//GEN-LAST:event_btnByTimeActionPerformed
 
     private void mHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mHomeMouseClicked
         this.setVisible(false);
-        new ManagerHomeFrm().setVisible(true);
+        new ManagerHomeFrm(LoginFrm.name).setVisible(true);
     }//GEN-LAST:event_mHomeMouseClicked
 
     private void btnByCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnByCarActionPerformed
@@ -96,17 +95,6 @@ public class StatisticHomeFrm extends javax.swing.JFrame {
         new StatByCarFrm().setVisible(true);
     }//GEN-LAST:event_btnByCarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StatisticHomeFrm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnByCar;

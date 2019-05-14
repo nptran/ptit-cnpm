@@ -18,6 +18,8 @@ public class Customer implements Serializable {
 
     private int id;
     
+    private int idcard;
+    
     private String name;
     
     private String gender;

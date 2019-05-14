@@ -1,16 +1,15 @@
 package rentcarmanagerment.view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Tran Phuc
  */
-public class StatByCarFrm extends javax.swing.JFrame {
+public class StatByCarFrm extends JFrame {
 
-    /**
-     * Creates new form StatByCarFrm
-     */
     public StatByCarFrm() {
-        this.setTitle("Income statistic by car");
+        super("Income statistic by car");
         initComponents();
     }
 
@@ -23,6 +22,7 @@ public class StatByCarFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mHome = new javax.swing.JMenu();
         mType = new javax.swing.JMenu();
@@ -31,7 +31,9 @@ public class StatByCarFrm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        mHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Pictures\\icons8-top-menu-24.png")); // NOI18N
+        jLabel1.setText("Statistic by car");
+
+        mHome.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ptit-cnpm\\quanlithuexetulai\\image\\home-icon.png")); // NOI18N
         mHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mHomeMouseClicked(evt);
@@ -70,11 +72,17 @@ public class StatByCarFrm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(239, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 123, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
@@ -82,12 +90,12 @@ public class StatByCarFrm extends javax.swing.JFrame {
 
     private void mHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mHomeMouseClicked
         this.setVisible(false);
-        new ManagerHomeFrm().setVisible(true);
+        new ManagerHomeFrm(LoginFrm.name).setVisible(true);
     }//GEN-LAST:event_mHomeMouseClicked
 
     private void itemByTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemByTimeActionPerformed
         this.setVisible(false);
-        new StatByTimeFrm().setVisible(true);
+        new StatByMonthFrm().setVisible(true);
     }//GEN-LAST:event_itemByTimeActionPerformed
 
     private void itemByCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemByCarActionPerformed
@@ -98,44 +106,10 @@ public class StatByCarFrm extends javax.swing.JFrame {
         mType.doClick();
     }//GEN-LAST:event_mTypeMouseEntered
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StatByCarFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StatByCarFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StatByCarFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StatByCarFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StatByCarFrm().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemByCar;
     private javax.swing.JMenuItem itemByTime;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mHome;
     private javax.swing.JMenu mType;

@@ -1,13 +1,8 @@
 package rentcarmanagerment.view;
 
 import java.awt.Dimension;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import rentcarmanagerment.RentCarManagerment;
 import rentcarmanagerment.dao.LoginDAO;
 
 /**
@@ -16,6 +11,8 @@ import rentcarmanagerment.dao.LoginDAO;
  */
 public class LoginFrm extends javax.swing.JFrame {
 
+    public static String name = "";
+    
     public LoginFrm() {
         Dimension size = new Dimension(400, 200);
         this.setSize(size);
@@ -23,6 +20,7 @@ public class LoginFrm extends javax.swing.JFrame {
         this.setTitle("Manager login");
         initComponents();
         lbLoginFail.setVisible(false);
+        lbRoleFail.setVisible(false);
     }
 
     /**
@@ -34,14 +32,19 @@ public class LoginFrm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grRole = new javax.swing.ButtonGroup();
         btnLogin = new javax.swing.JButton();
         btnCancle = new javax.swing.JButton();
         lbUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         lbPassword = new javax.swing.JLabel();
-        lbAppName = new javax.swing.JLabel();
         lbLoginFail = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        rAdmin = new javax.swing.JRadioButton();
+        rMod = new javax.swing.JRadioButton();
+        rEmp = new javax.swing.JRadioButton();
+        lbRoleFail = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,59 +72,95 @@ public class LoginFrm extends javax.swing.JFrame {
 
         lbPassword.setText("Password:");
 
-        lbAppName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lbAppName.setText("Rent Car Management");
-
         lbLoginFail.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         lbLoginFail.setForeground(new java.awt.Color(255, 51, 51));
         lbLoginFail.setText("Wrong username or password, please try again!");
+
+        grRole.add(rAdmin);
+        rAdmin.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        rAdmin.setText("Admin");
+
+        grRole.add(rMod);
+        rMod.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        rMod.setText("Manager/Mod");
+
+        grRole.add(rEmp);
+        rEmp.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        rEmp.setText("Employee");
+
+        lbRoleFail.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        lbRoleFail.setForeground(new java.awt.Color(255, 51, 51));
+        lbRoleFail.setText("Please choose your role!");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ptit-cnpm\\quanlithuexetulai\\image\\car.png")); // NOI18N
+        jLabel1.setText("Rent Car Management");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbLoginFail)
-                    .addComponent(lbAppName)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lbPassword)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbUsername)
-                                .addGap(8, 8, 8)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtUsername)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbPassword)
+                                    .addComponent(lbUsername))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(rMod)))))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
                                 .addComponent(btnLogin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                .addGap(35, 35, 35)
                                 .addComponent(btnCancle))
-                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                            .addComponent(jLabel1))
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbRoleFail)
+                            .addComponent(lbLoginFail))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbAppName)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbUsername)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbPassword)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rMod, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbLoginFail)
+                    .addComponent(rEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbRoleFail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbLoginFail)
-                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
-                    .addComponent(btnCancle))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancle)))
         );
 
         pack();
@@ -131,18 +170,35 @@ public class LoginFrm extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        String role = null;
+        if (rAdmin.isSelected()) {
+            role = "ADM";
+        } else if (rMod.isSelected()) {
+            role = "MOD";
+        } else if (rEmp.isSelected()) {
+            role = "EMP";
+        }
+
+        LoginDAO dao = null;
         try {
-            LoginDAO dao = new LoginDAO(txtUsername.getText(), txtPassword.getText());
+            dao = new LoginDAO();
             System.out.println("Connected to database!");
-            
-            this.setVisible(false);
-            new ManagerHomeFrm().setVisible(true);
-            
         } catch (SQLException ex) {
-            System.err.println("Login Failed! Wrong username or password!");
-            lbLoginFail.setVisible(true);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RentCarManagerment.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, "Cannot connect to database!");
+        }
+        if (dao != null) {
+            try {
+                name = dao.login(txtUsername.getText(), txtPassword.getText(), role);
+                this.setVisible(false);
+                new ManagerHomeFrm(name).setVisible(true);
+
+            } catch (SQLException ex) {
+                System.err.println("Login Failed! Wrong username or password!");
+                lbLoginFail.setVisible(true);
+            } catch (NullPointerException e) {
+                System.out.println("Login Failed! Please choose your role!");
+                lbRoleFail.setVisible(true);
+            }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -155,48 +211,18 @@ public class LoginFrm extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCancleActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(LoginFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new LoginFrm().setVisible(true);
-//            }
-//        });
-//    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancle;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel lbAppName;
+    private javax.swing.ButtonGroup grRole;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbLoginFail;
     private javax.swing.JLabel lbPassword;
+    private javax.swing.JLabel lbRoleFail;
     private javax.swing.JLabel lbUsername;
+    private javax.swing.JRadioButton rAdmin;
+    private javax.swing.JRadioButton rEmp;
+    private javax.swing.JRadioButton rMod;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

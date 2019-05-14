@@ -5,6 +5,7 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rentcarmanagerment.model.user.Employee;
 
 /**
  *
@@ -26,11 +27,19 @@ public class Contract {
     private boolean isActivate;
     
 //  tiền cọc
-    private float deposit;
+    private double deposit;
     
-//  giá thuê trên hợp đồng
-    private float cost;
+//  giá thuê trên hợp đồng cho một ngày, bằng 0 khi khách hủy giao dịch
+    private double price_per_day;
+    
+    private Car car;
+    
+    private Employee employee;
+    
+    private Customer customer;
     
     private Bill bill;
     
+//  tổng doanh thu từ hợp đồng
+//    private static double totalCost = deposit + (sd.getDate() - ed.getDate())*price_per_day;
 }

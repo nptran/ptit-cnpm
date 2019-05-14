@@ -5,8 +5,8 @@ package rentcarmanagerment.model.user;
  * @author Tran Phuc
  */
 
-public class Moderator extends User {
+public class Admin extends User {
 
-    private final String role = "MOD";
+    private final String role = "ADM";
     
 }

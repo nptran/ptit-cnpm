@@ -10,43 +10,40 @@ import java.sql.SQLException;
  *
  * @author Tran Phuc
  */
+public class LoginDAO extends BaseDAO {
 
-public class LoginDAO {
+    public LoginDAO() throws SQLException {
+        getInstance();
+    }
 
-    // JDBC driver name and database URL
-    private final static String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final static String DB_URL = "jdbc:mysql://localhost:3306/rentcar?useSSL=false";
-    private final static String USER = "root";
-    private final static String PASS = "31101998";
+    public String login(String user, String pass, String role) throws SQLException {
+        if (role == null) {
+            throw new NullPointerException();
+        }
 
-    public LoginDAO(String user, String pass) throws ClassNotFoundException, SQLException {
-        Connection connector = null;
-        PreparedStatement statement = null;
-        boolean login = false;
-        try {
-            Class.forName(JDBC_DRIVER);
-            connector = DriverManager.getConnection(DB_URL, USER, PASS);
+        String name = "";
+        String queryLogin = "SELECT name FROM rentcar.user \n"
+                + "INNER JOIN rentcar.manager \n"
+                + "ON id_user=id \n"
+                + "WHERE username = ? \n"
+                + "AND password = ? \n"
+                + "AND role = ?";
 
-            String queryLogin = "SELECT * FROM rentcar.manager WHERE username = ? AND password = ? AND role = 'MOD'";
+        PreparedStatement statement = con.prepareStatement(queryLogin);
+        statement.setString(1, user);
+        statement.setString(2, pass);
+        statement.setString(3, role);
 
-            statement = connector.prepareStatement(queryLogin);
-            statement.setString(1, user);
-            statement.setString(2, pass);
-            
-            ResultSet rs = statement.executeQuery();
+        ResultSet rs = statement.executeQuery();
 
-            if(!rs.isBeforeFirst()) {
-                throw new SQLException();
-            }
-        } finally {
-            try {
-                connector.close();
-            } catch (NullPointerException e) {
-                /*
-                 * conn will be null when wrong username or password 
-                 * so do nothing here
-                 */
+        if (!rs.isBeforeFirst()) {
+            throw new SQLException();
+        } else {
+            while (rs.next()) {
+                name = rs.getString(1);
             }
         }
+
+        return name;
     }
 }

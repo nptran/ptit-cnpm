@@ -11,10 +11,12 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
 
     /**
      * Creates new form ManagerHomeFrm
+     * @param name
      */
-    public ManagerHomeFrm() {
-        this.setTitle("Manager Home");
+    public ManagerHomeFrm(String name) {
+        super("Manager Home");
         initComponents();
+        lbTitle.setText("Welcome "+ name);
     }
 
     /**
@@ -31,6 +33,7 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
         btnManage = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        lbTitle = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
 
@@ -39,6 +42,7 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
         jMenu2.setText("jMenu2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 255, 255));
 
         btnManage.setText("Manage Car");
         btnManage.addActionListener(new java.awt.event.ActionListener() {
@@ -61,7 +65,11 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
             }
         });
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Pictures\\icons8-top-menu-24.png")); // NOI18N
+        lbTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbTitle.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ptit-cnpm\\quanlithuexetulai\\image\\user.png")); // NOI18N
+        lbTitle.setText("Welcome");
+
+        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Admin\\Documents\\NetBeansProjects\\ptit-cnpm\\quanlithuexetulai\\image\\home-icon.png")); // NOI18N
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -72,22 +80,27 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnManage)
-                .addGap(18, 18, 18)
-                .addComponent(btnReport)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnManage)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnReport)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbTitle))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lbTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnManage)
                     .addComponent(btnReport)
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -106,40 +119,6 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
         new LoginFrm().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(ManagerHomeFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(ManagerHomeFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(ManagerHomeFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(ManagerHomeFrm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ManagerHomeFrm().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManage;
@@ -149,5 +128,6 @@ public class ManagerHomeFrm extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lbTitle;
     // End of variables declaration//GEN-END:variables
 }

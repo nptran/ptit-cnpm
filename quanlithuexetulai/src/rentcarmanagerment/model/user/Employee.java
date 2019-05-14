@@ -16,8 +16,12 @@ import rentcarmanagerment.model.Bill;
 @AllArgsConstructor
 public class Employee extends User {
 
-    private final String role = "EMPLOYEE";
+    private final String role = "EMP";
 
     private List<Bill> bills;
+    
+    private String name;
+    
+    private String email;
     
 }
